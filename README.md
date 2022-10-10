@@ -2,7 +2,7 @@
 
 - [x] Text
 - [x] Box
-- [ ] Heading
+- [x] Heading
 - [ ] Button
 - [ ] TextInput
 - [ ] TextArea
