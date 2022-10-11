@@ -30,3 +30,5 @@ export const AvatarFallback = styled(Avatar.Fallback, {
     height: '$6',
   },
 })
+
+AvatarContainer.displayName = 'Avatar'

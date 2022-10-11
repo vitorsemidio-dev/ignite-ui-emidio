@@ -47,3 +47,5 @@ export const Input = styled('input', {
     color: '$gray400',
   },
 })
+
+TextInputContainer.displayName = 'TextInput'
