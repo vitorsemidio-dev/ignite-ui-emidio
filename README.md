@@ -4,7 +4,7 @@
 - [x] Box
 - [x] Heading
 - [x] Button
-- [ ] TextInput
+- [x] TextInput
 - [ ] TextArea
 - [ ] Checkbox
 - [x] Avatar
