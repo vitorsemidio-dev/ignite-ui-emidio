@@ -15,4 +15,9 @@ export const colors = {
   ignite500: '#00875F',
   ignite700: '#015F43',
   ignite900: '#00291D',
+
+  cyan300: '#67e8f9',
+  cyan500: '#06b6d4',
+  cyan700: '#0e7490',
+  cyan900: '#164e63',
 }
