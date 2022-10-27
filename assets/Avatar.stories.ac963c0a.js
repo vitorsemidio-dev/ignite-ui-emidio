@@ -1,0 +1,2 @@
+import{A as t}from"./index.33ecbbe8.js";import"./index.90708258.js";import"./iframe.2cca2190.js";import"./index.66c26dc2.js";import"./jsx-runtime.b5a8775d.js";const m={title:"Data display/Avatar",component:t,args:{src:"https://github.com/vitorsemidio-dev.png",alt:"Vitor Emidio"},argTypes:{src:{control:{type:"text"}}}},p={},c={args:{src:void 0}},e=["Primary","WithFallback"];export{p as Primary,c as WithFallback,e as __namedExportsOrder,m as default};
+//# sourceMappingURL=Avatar.stories.ac963c0a.js.map
