@@ -39,16 +39,18 @@ const StyledViewport = styled(ToastPrimitive.Viewport, {
 })
 
 const StyledToastRoot = styled(ToastPrimitive.Root, {
-  backgroundColor: 'white',
-  borderRadius: 6,
   boxShadow:
     'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
-  padding: 15,
   display: 'grid',
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: 'auto max-content',
   columnGap: 15,
   alignItems: 'center',
+
+  padding: '$4',
+  borderRadius: '$md',
+  backgroundColor: '$gray800',
+  border: '1px solid $gray400',
 
   '@media (prefers-reduced-motion: no-preference)': {
     '&[data-state="open"]': {
@@ -74,16 +76,16 @@ const StyledTitle = styled(ToastPrimitive.Title, {
   gridArea: 'title',
   marginBottom: 5,
   fontWeight: 500,
-  color: slate.slate12,
-  fontSize: 15,
+  // color: slate.slate12,
+  // fontSize: 15,
 })
 
 const StyledDescription = styled(ToastPrimitive.Description, {
   gridArea: 'description',
   margin: 0,
-  color: slate.slate11,
-  fontSize: 13,
-  lineHeight: 1.3,
+  // color: slate.slate11,
+  // fontSize: 13,
+  // lineHeight: 1.3,
 })
 
 const StyledAction = styled(ToastPrimitive.Action, {
@@ -163,8 +165,8 @@ export interface ToastRootPropst
 
 export interface ToastProps
   extends React.ComponentProps<typeof ToastPrimitive.Provider> {
-  toastTitle: string
-  toastDescription: string
+  toastTitle: string | React.ReactNode
+  toastDescription: string | React.ReactNode
 }
 
 export const ToastDemo = ({
@@ -199,15 +201,15 @@ export const ToastDemo = ({
       </Button> */}
 
       <ToastRoot open={open} onOpenChange={setOpen}>
-        {/* Title */}
-        <ToastTitle>{toastTitle}</ToastTitle>
-        {/* Description */}
-        <ToastDescription asChild>
-          <span>{toastDescription}</span>
+        <ToastTitle asChild={typeof toastTitle !== 'string'}>
+          {toastTitle}
+        </ToastTitle>
+        <ToastDescription asChild={typeof toastDescription !== 'string'}>
+          {toastDescription}
         </ToastDescription>
 
         <ToastPrimitive.Close asChild>
-          <X weight="bold" cursor={'pointer'} />
+          <X weight="bold" cursor={'pointer'} color={'#FFF'} />
         </ToastPrimitive.Close>
       </ToastRoot>
       <ToastViewport />
