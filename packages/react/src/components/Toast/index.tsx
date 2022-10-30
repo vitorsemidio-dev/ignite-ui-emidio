@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react'
 import { styled, keyframes } from '@stitches/react'
 import { violet, blackA, mauve, slate, green } from '@radix-ui/colors'
@@ -37,7 +38,7 @@ const StyledViewport = styled(ToastPrimitive.Viewport, {
   outline: 'none',
 })
 
-const StyledToast = styled(ToastPrimitive.Root, {
+const StyledToastRoot = styled(ToastPrimitive.Root, {
   backgroundColor: 'white',
   borderRadius: 6,
   boxShadow:
@@ -92,7 +93,7 @@ const StyledAction = styled(ToastPrimitive.Action, {
 // Exports
 export const ToastProvider = ToastPrimitive.Provider
 export const ToastViewport = StyledViewport
-export const ToastContainer = StyledToast
+export const ToastRoot = StyledToastRoot
 export const ToastTitle = StyledTitle
 export const ToastDescription = StyledDescription
 export const ToastAction = StyledAction
@@ -144,11 +145,11 @@ const Button = styled('button', {
   },
 })
 
-function oneWeekAway(date?: Date) {
-  const now = new Date()
-  const inOneWeek = now.setDate(now.getDate() + 7)
-  return new Date(inOneWeek)
-}
+// function oneWeekAway(date?: Date) {
+//   const now = new Date()
+//   const inOneWeek = now.setDate(now.getDate() + 7)
+//   return new Date(inOneWeek)
+// }
 
 function prettyDate(date: Date) {
   return new Intl.DateTimeFormat('en-US', {
@@ -157,11 +158,22 @@ function prettyDate(date: Date) {
   }).format(date)
 }
 
-export interface ToastProps
-  extends React.ComponentProps<typeof ToastContainer> {}
+export interface ToastRootPropst
+  extends React.ComponentProps<typeof ToastRoot> {}
 
-export const ToastDemo = () => {
-  const [open, setOpen] = React.useState(false)
+export interface ToastProps
+  extends React.ComponentProps<typeof ToastPrimitive.Provider> {
+  toastTitle: string
+  toastDescription: string
+}
+
+export const ToastDemo = ({
+  toastDescription = 'descriptoion',
+  toastTitle = 'title',
+  children,
+  ...props
+}: ToastProps) => {
+  const [open, setOpen] = React.useState(true)
   const eventDateRef = React.useRef(new Date())
   const timerRef = React.useRef(0)
 
@@ -172,7 +184,8 @@ export const ToastDemo = () => {
   return (
     <ToastProvider swipeDirection="right">
       {/* Children */}
-      <Button
+      {children}
+      {/* <Button
         onClick={() => {
           setOpen(false)
           window.clearTimeout(timerRef.current)
@@ -183,27 +196,20 @@ export const ToastDemo = () => {
         }}
       >
         Add to calendar
-      </Button>
+      </Button> */}
 
-      <ToastContainer open={open} onOpenChange={setOpen}>
+      <ToastRoot open={open} onOpenChange={setOpen}>
         {/* Title */}
-        <ToastTitle>Scheduled: Catch up</ToastTitle>
+        <ToastTitle>{toastTitle}</ToastTitle>
         {/* Description */}
         <ToastDescription asChild>
-          <time dateTime={eventDateRef.current.toISOString()}>
-            {prettyDate(eventDateRef.current)}
-          </time>
+          <span>{toastDescription}</span>
         </ToastDescription>
-        {/* <ToastAction asChild altText="Goto schedule to undo">
-          <Button variant="green" size="small">
-            Undo
-          </Button>
-        </ToastAction> */}
 
         <ToastPrimitive.Close asChild>
           <X weight="bold" cursor={'pointer'} />
         </ToastPrimitive.Close>
-      </ToastContainer>
+      </ToastRoot>
       <ToastViewport />
     </ToastProvider>
   )

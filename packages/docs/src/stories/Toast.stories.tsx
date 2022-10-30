@@ -7,3 +7,18 @@ export default {
 } as Meta<ToastProps>
 
 export const Primary: StoryObj<ToastProps> = {}
+
+export const Children: StoryObj<ToastProps> = {
+  args: {
+    children: <button>Abrir</button>,
+    toastTitle: 'Agendamento Realizado',
+    toastDescription: 'Quarta-feira, 23 de Outubro às 16h',
+  },
+  argTypes: {
+    children: {
+      control: {
+        type: null,
+      },
+    },
+  },
+}
