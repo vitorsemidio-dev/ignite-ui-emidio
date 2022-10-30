@@ -2,20 +2,27 @@ import type { Meta, StoryObj } from '@storybook/react'
 import {
   ToastDemo,
   ToastProps,
+  StyledProvider,
+  StyledToastRoot,
+  StyledViewport,
+  StyledClose,
+  StyledTitle,
+  StyledDescription,
   Button,
   Text,
   Heading,
 } from '@ignite-ui-emidio/react'
 import { colors } from '@ignite-ui-emidio/tokens'
+import * as React from 'react'
+
+import { X } from 'phosphor-react'
 
 export default {
   title: 'Overlay/Toast',
   component: ToastDemo,
 } as Meta<ToastProps>
 
-export const Primary: StoryObj<ToastProps> = {}
-
-export const Open: StoryObj<ToastProps> = {
+const Open: StoryObj<ToastProps> = {
   args: {
     children: <Button>Abrir</Button>,
     toastTitle: (
@@ -52,4 +59,23 @@ export const Open: StoryObj<ToastProps> = {
       },
     },
   },
+}
+
+export const FromDialog = () => {
+  const [open, setOpen] = React.useState(false)
+  return (
+    <StyledProvider>
+      <Button onClick={() => setOpen(!open)}>Abrir</Button>
+
+      <StyledToastRoot open={open} onOpenChange={setOpen}>
+        <StyledTitle>Título</StyledTitle>
+        <StyledDescription>There was an error</StyledDescription>
+        <StyledClose asChild>
+          <X weight="bold" cursor={'pointer'} color={'#FFF'} width={20} />
+        </StyledClose>
+      </StyledToastRoot>
+
+      <StyledViewport />
+    </StyledProvider>
+  )
 }

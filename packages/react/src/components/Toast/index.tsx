@@ -10,6 +10,15 @@ import {
   StyledClose,
 } from './styles'
 
+export {
+  StyledProvider,
+  StyledToastRoot,
+  StyledTitle,
+  StyledDescription,
+  StyledClose,
+  StyledViewport,
+}
+
 export interface ToastRootPropst
   extends ComponentProps<typeof StyledToastRoot> {}
 
@@ -24,13 +33,13 @@ export const ToastDemo = ({
   children,
   ...props
 }: ToastProps) => {
-  const [open, setOpen] = useState(true)
+  // const [open, setOpen] = useState(true)
 
   return (
-    <StyledProvider swipeDirection="right" {...props}>
+    <>
       {children}
 
-      <StyledToastRoot open={open} onOpenChange={setOpen}>
+      {/* <StyledToastRoot open={open} onOpenChange={setOpen}>
         <StyledTitle asChild={typeof toastTitle !== 'string'}>
           {toastTitle}
         </StyledTitle>
@@ -41,8 +50,8 @@ export const ToastDemo = ({
         <StyledClose asChild>
           <X weight="bold" cursor={'pointer'} color={'#FFF'} width={20} />
         </StyledClose>
-      </StyledToastRoot>
-      <StyledViewport />
-    </StyledProvider>
+      </StyledToastRoot> */}
+      {/* <StyledViewport /> */}
+    </>
   )
 }
