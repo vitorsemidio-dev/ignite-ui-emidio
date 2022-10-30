@@ -5,101 +5,17 @@ import { violet, blackA, mauve, slate, green } from '@radix-ui/colors'
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import { X } from 'phosphor-react'
 
-const VIEWPORT_PADDING = 25
-
-const hide = keyframes({
-  '0%': { opacity: 1 },
-  '100%': { opacity: 0 },
-})
-
-const slideIn = keyframes({
-  from: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` },
-  to: { transform: 'translateX(0)' },
-})
-
-const swipeOut = keyframes({
-  from: { transform: 'translateX(var(--radix-toast-swipe-end-x))' },
-  to: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` },
-})
-
-const StyledViewport = styled(ToastPrimitive.Viewport, {
-  position: 'fixed',
-  bottom: 0,
-  right: 0,
-  display: 'flex',
-  flexDirection: 'column',
-  padding: VIEWPORT_PADDING,
-  gap: 10,
-  width: 390,
-  maxWidth: '100vw',
-  margin: 0,
-  listStyle: 'none',
-  zIndex: 2147483647,
-  outline: 'none',
-})
-
-const StyledToastRoot = styled(ToastPrimitive.Root, {
-  boxShadow:
-    'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
-  display: 'grid',
-  gridTemplateAreas: '"title action" "description action"',
-  gridTemplateColumns: 'auto max-content',
-  columnGap: 15,
-  alignItems: 'center',
-
-  padding: '$4',
-  borderRadius: '$md',
-  backgroundColor: '$gray800',
-  border: '1px solid $gray400',
-
-  '@media (prefers-reduced-motion: no-preference)': {
-    '&[data-state="open"]': {
-      animation: `${slideIn} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-    },
-    '&[data-state="closed"]': {
-      animation: `${hide} 100ms ease-in`,
-    },
-    '&[data-swipe="move"]': {
-      transform: 'translateX(var(--radix-toast-swipe-move-x))',
-    },
-    '&[data-swipe="cancel"]': {
-      transform: 'translateX(0)',
-      transition: 'transform 200ms ease-out',
-    },
-    '&[data-swipe="end"]': {
-      animation: `${swipeOut} 100ms ease-out`,
-    },
-  },
-})
-
-const StyledTitle = styled(ToastPrimitive.Title, {
-  gridArea: 'title',
-  marginBottom: 5,
-  fontWeight: 500,
-  // color: slate.slate12,
-  // fontSize: 15,
-})
-
-const StyledDescription = styled(ToastPrimitive.Description, {
-  gridArea: 'description',
-  margin: 0,
-  // color: slate.slate11,
-  // fontSize: 13,
-  // lineHeight: 1.3,
-})
-
-const StyledAction = styled(ToastPrimitive.Action, {
-  gridArea: 'action',
-})
+import {
+  StyledViewport,
+  StyledToastRoot,
+  StyledTitle,
+  StyledDescription,
+  // StyledAction,
+  StyledProvider,
+  StyledClose,
+} from './styles'
 
 // Exports
-export const ToastProvider = ToastPrimitive.Provider
-export const ToastViewport = StyledViewport
-export const ToastRoot = StyledToastRoot
-export const ToastTitle = StyledTitle
-export const ToastDescription = StyledDescription
-export const ToastAction = StyledAction
-export const ToastClose = ToastPrimitive.Close
 
 // Your app...
 // const Box = styled('div', {})
@@ -147,21 +63,8 @@ const Button = styled('button', {
   },
 })
 
-// function oneWeekAway(date?: Date) {
-//   const now = new Date()
-//   const inOneWeek = now.setDate(now.getDate() + 7)
-//   return new Date(inOneWeek)
-// }
-
-function prettyDate(date: Date) {
-  return new Intl.DateTimeFormat('en-US', {
-    dateStyle: 'full',
-    timeStyle: 'short',
-  }).format(date)
-}
-
 export interface ToastRootPropst
-  extends React.ComponentProps<typeof ToastRoot> {}
+  extends React.ComponentProps<typeof StyledToastRoot> {}
 
 export interface ToastProps
   extends React.ComponentProps<typeof ToastPrimitive.Provider> {
@@ -184,7 +87,7 @@ export const ToastDemo = ({
   }, [])
 
   return (
-    <ToastProvider swipeDirection="right">
+    <StyledProvider swipeDirection="right">
       {/* Children */}
       {children}
       {/* <Button
@@ -200,20 +103,20 @@ export const ToastDemo = ({
         Add to calendar
       </Button> */}
 
-      <ToastRoot open={open} onOpenChange={setOpen}>
-        <ToastTitle asChild={typeof toastTitle !== 'string'}>
+      <StyledToastRoot open={open} onOpenChange={setOpen}>
+        <StyledTitle asChild={typeof toastTitle !== 'string'}>
           {toastTitle}
-        </ToastTitle>
-        <ToastDescription asChild={typeof toastDescription !== 'string'}>
+        </StyledTitle>
+        <StyledDescription asChild={typeof toastDescription !== 'string'}>
           {toastDescription}
-        </ToastDescription>
+        </StyledDescription>
 
-        <ToastPrimitive.Close asChild>
+        <StyledClose asChild>
           <X weight="bold" cursor={'pointer'} color={'#FFF'} />
-        </ToastPrimitive.Close>
-      </ToastRoot>
-      <ToastViewport />
-    </ToastProvider>
+        </StyledClose>
+      </StyledToastRoot>
+      <StyledViewport />
+    </StyledProvider>
   )
 }
 
