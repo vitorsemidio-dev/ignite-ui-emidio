@@ -15,20 +15,7 @@ export default {
 
 export const Primary: StoryObj<ToastProps> = {}
 
-// const toastDescription = 'Quarta-feira, 23 de Outubro às 16h'
-const toastDescription = (
-  <Text
-    as={'span'}
-    size={'sm'}
-    css={{
-      color: colors.gray200,
-    }}
-  >
-    Quarta-feira, 23 de Outubro às 16h
-  </Text>
-)
-
-export const Children: StoryObj<ToastProps> = {
+export const Open: StoryObj<ToastProps> = {
   args: {
     children: <Button>Abrir</Button>,
     toastTitle: (
@@ -42,10 +29,25 @@ export const Children: StoryObj<ToastProps> = {
         Agendamento Realizado
       </Heading>
     ),
-    toastDescription,
+    toastDescription: (
+      <Text
+        as={'span'}
+        size={'sm'}
+        css={{
+          color: colors.gray200,
+        }}
+      >
+        Quarta-feira, 23 de Outubro às 16h
+      </Text>
+    ),
   },
   argTypes: {
     children: {
+      control: {
+        type: null,
+      },
+    },
+    toastTitle: {
       control: {
         type: null,
       },
