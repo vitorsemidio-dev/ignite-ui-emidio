@@ -19,13 +19,7 @@ export const Open: StoryObj<ToastProps> = {
   args: {
     children: <Button>Abrir</Button>,
     toastTitle: (
-      <Heading
-        as={'h6'}
-        size={'sm'}
-        css={{
-          color: colors.white,
-        }}
-      >
+      <Heading as={'h6'} size={'sm'}>
         Agendamento Realizado
       </Heading>
     ),

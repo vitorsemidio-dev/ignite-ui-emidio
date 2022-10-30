@@ -1,6 +1,8 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import { styled, keyframes } from '../../styles'
 
+export const StyledProvider = styled(ToastPrimitive.Provider, {})
+
 const VIEWPORT_PADDING = 25
 
 const hide = keyframes({
@@ -28,8 +30,9 @@ export const StyledToastRoot = styled(ToastPrimitive.Root, {
   display: 'grid',
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: 'auto max-content',
-  columnGap: 15,
-  alignItems: 'center',
+  columnGap: '$1',
+  rowGap: '$1',
+  alignItems: 'flex-start',
 
   padding: '$4',
   borderRadius: '$md',
@@ -58,18 +61,18 @@ export const StyledToastRoot = styled(ToastPrimitive.Root, {
 
 export const StyledTitle = styled(ToastPrimitive.Title, {
   gridArea: 'title',
-  marginBottom: 5,
-  fontWeight: 500,
-  // color: slate.slate12,
-  // fontSize: 15,
+  marginBottom: '$2',
+  fontWeight: '$medium',
+  color: '$white',
+  fontSize: '$md',
 })
 
 export const StyledDescription = styled(ToastPrimitive.Description, {
   gridArea: 'description',
   margin: 0,
-  // color: slate.slate11,
-  // fontSize: 13,
-  // lineHeight: 1.3,
+  color: '$gray200',
+  fontSize: '$sm',
+  lineHeight: '$short',
 })
 
 export const StyledViewport = styled(ToastPrimitive.Viewport, {
@@ -88,5 +91,4 @@ export const StyledViewport = styled(ToastPrimitive.Viewport, {
   outline: 'none',
 })
 
-export const StyledProvider = styled(ToastPrimitive.Provider, {})
 export const StyledClose = styled(ToastPrimitive.Close, {})

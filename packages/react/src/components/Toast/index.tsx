@@ -6,7 +6,6 @@ import {
   StyledToastRoot,
   StyledTitle,
   StyledDescription,
-  // StyledAction,
   StyledProvider,
   StyledClose,
 } from './styles'
@@ -20,8 +19,8 @@ export interface ToastProps extends ComponentProps<typeof StyledProvider> {
 }
 
 export const ToastDemo = ({
-  toastDescription = 'descriptoion',
-  toastTitle = 'title',
+  toastDescription,
+  toastTitle,
   children,
   ...props
 }: ToastProps) => {
@@ -40,7 +39,7 @@ export const ToastDemo = ({
         </StyledDescription>
 
         <StyledClose asChild>
-          <X weight="bold" cursor={'pointer'} color={'#FFF'} />
+          <X weight="bold" cursor={'pointer'} color={'#FFF'} width={20} />
         </StyledClose>
       </StyledToastRoot>
       <StyledViewport />
