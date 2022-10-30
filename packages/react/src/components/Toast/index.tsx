@@ -2,6 +2,7 @@ import * as React from 'react'
 import { styled, keyframes } from '@stitches/react'
 import { violet, blackA, mauve, slate, green } from '@radix-ui/colors'
 import * as ToastPrimitive from '@radix-ui/react-toast'
+import { X } from 'phosphor-react'
 
 const VIEWPORT_PADDING = 25
 
@@ -156,6 +157,9 @@ function prettyDate(date: Date) {
   }).format(date)
 }
 
+export interface ToastProps
+  extends React.ComponentProps<typeof ToastContainer> {}
+
 export const ToastDemo = () => {
   const [open, setOpen] = React.useState(false)
   const eventDateRef = React.useRef(new Date())
@@ -167,6 +171,7 @@ export const ToastDemo = () => {
 
   return (
     <ToastProvider swipeDirection="right">
+      {/* Children */}
       <Button
         onClick={() => {
           setOpen(false)
@@ -181,17 +186,23 @@ export const ToastDemo = () => {
       </Button>
 
       <ToastContainer open={open} onOpenChange={setOpen}>
+        {/* Title */}
         <ToastTitle>Scheduled: Catch up</ToastTitle>
+        {/* Description */}
         <ToastDescription asChild>
           <time dateTime={eventDateRef.current.toISOString()}>
             {prettyDate(eventDateRef.current)}
           </time>
         </ToastDescription>
-        <ToastAction asChild altText="Goto schedule to undo">
+        {/* <ToastAction asChild altText="Goto schedule to undo">
           <Button variant="green" size="small">
             Undo
           </Button>
-        </ToastAction>
+        </ToastAction> */}
+
+        <ToastPrimitive.Close asChild>
+          <X weight="bold" cursor={'pointer'} />
+        </ToastPrimitive.Close>
       </ToastContainer>
       <ToastViewport />
     </ToastProvider>
