@@ -28,12 +28,21 @@
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-interactions": "^6.5.12",
     "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-vite": "^0.2.3",
+    "@storybook/addon-mdx-gfm": "^7.0.20",
+    "@storybook/builder-vite": "^0.2.4",
+    "@storybook/jest": "^0.0.10",
     "@storybook/react": "^6.5.12",
+    "@storybook/react-vite": "^7.0.7",
     "@storybook/storybook-deployer": "^2.8.12",
+    "@storybook/test-runner": "^0.9.0",
     "@storybook/testing-library": "^0.0.13",
     "@vitejs/plugin-react": "^2.1.0",
     "babel-loader": "^8.2.5",
+    "msw": "^0.47.4",
+    "msw-storybook-addon": "^1.6.3",
     "vite": "^3.1.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
