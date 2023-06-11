@@ -4,9 +4,12 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo run dev --parallel",
     "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
     "changeset": "changeset",
+    "clear:all": "npm run clear:packages && npm run clear:node_modules",
+    "clear:packages": "rm -rf packages/*/dist packages/*/storybook-static packages/*/.turbo",
+    "clear:node_modules": "rm -rf node_modules packages/*/node_modules",
     "version-packages": "changeset version",
     "release": "turbo run build --filter=!docs && changeset publish"
   },
