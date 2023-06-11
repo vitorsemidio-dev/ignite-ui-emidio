@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "build": "storybook build",
+    "dev": "start-storybook -p 6006",
+    "build": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [],
@@ -23,19 +23,26 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@storybook/addon-a11y": "^7.0.7",
-    "@storybook/addon-actions": "^7.0.7",
-    "@storybook/addon-essentials": "^7.0.7",
-    "@storybook/addon-interactions": "^7.0.7",
-    "@storybook/addon-links": "^7.0.7",
-    "@storybook/addon-mdx-gfm": "^7.0.7",
-    "@storybook/react": "^7.0.7",
+    "@storybook/addon-a11y": "^6.5.12",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/addon-mdx-gfm": "^7.0.20",
+    "@storybook/builder-vite": "^0.2.4",
+    "@storybook/jest": "^0.0.10",
+    "@storybook/react": "^6.5.12",
     "@storybook/react-vite": "^7.0.7",
-    "@storybook/storybook-deployer": "^2.8.16",
-    "@storybook/testing-library": "^0.1.0",
+    "@storybook/storybook-deployer": "^2.8.12",
+    "@storybook/test-runner": "^0.9.0",
+    "@storybook/testing-library": "^0.0.13",
     "@vitejs/plugin-react": "^2.1.0",
     "babel-loader": "^8.2.5",
-    "storybook": "^7.0.7",
+    "msw": "^0.47.4",
+    "msw-storybook-addon": "^1.6.3",
     "vite": "^3.1.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
